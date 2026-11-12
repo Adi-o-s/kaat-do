@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kaat Do · Send in your voice</title>
+<meta name="description" content="Send your parents a scam-call practice drill in your own voice.">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="practice">PRACTICE · यह अभ्यास है</div>
+<section class="screen on light">
+  <div class="wrap" id="form">
+    <p class="eyebrow">Kaat Do · one-minute setup</p>
+    <h1 class="title">Send it in your voice</h1>
+    <p class="muted">Your parent gets three practice calls, plus one in your voice from a "new number" asking for money. The debrief comes in your voice and ends by telling them it was AI.</p>
+
+    <div class="field"><label for="name">Your name (shown to your parent)</label>
+      <input id="name" maxlength="24" placeholder="Aditya" autocomplete="given-name"></div>
+
+    <div class="field"><label>Who is it for?</label><div class="chips" id="who"></div></div>
+
+    <label class="rec"><input type="checkbox" id="cloneCall" checked> Include the call in my voice asking for money</label>
+
+    <div class="field"><label>Read this aloud (about 20 seconds)</label>
+      <div class="consent" id="consent"></div></div>
+
+    <button class="btn primary" id="recBtn">● Record</button>
+    <p class="muted small" id="recInfo">Recorded live here, never uploaded as a file. Your voice is only used for the fixed practice lines and is deleted after 7 days.</p>
+    <p class="err" id="err"></p>
+    <button class="btn primary" id="makeBtn" disabled>Make my drill</button>
+  </div>
+
+  <div class="wrap" id="making" style="display:none">
+    <p class="eyebrow">Kaat Do</p>
+    <h1 class="title" id="makingTitle">Making your voice…</h1>
+    <div class="progress"><div id="bar"></div></div>
+    <p class="muted" id="makingInfo"></p>
+  </div>
+
+  <div class="wrap" id="done" style="display:none">
+    <p class="eyebrow">Ready</p>
+    <h1 class="title">Your drill is ready</h1>
+    <p>Tell your parent it is coming first, then send the link. A real practice link only ever comes from family.</p>
+    <div class="consent" id="link" style="font-size:15px;word-break:break-all"></div>
+    <button class="btn primary" id="waBtn">Send on WhatsApp</button>
+    <button class="btn ghost" id="copyBtn">Copy link</button>
+    <a class="btn ghost" id="tryBtn" href="#">Try it yourself first</a>
+  </div>
+</section>
+<script src="/mic.js"></script>
+<script src="/setup.js"></script>
+</body>
+</html>

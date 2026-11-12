@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kaat Do · Practice call</title>
+<meta name="description" content="A fire drill for scam calls. Three practice calls in Hinglish, one is genuine. Darr, Raaz, Paisa: kaat do.">
+<meta property="og:title" content="Kaat Do: scam call practice">
+<meta property="og:description" content="Three practice calls. One is genuine. Can your parents tell which to cut?">
+<meta name="theme-color" content="#0f1512">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="practice">PRACTICE · यह अभ्यास है</div>
+
+<!-- ringing -->
+<section id="ring" class="screen on dark">
+  <div class="ring-top">
+    <p class="ring-count" id="ringCount">Practice call</p>
+    <div class="avatar pulse">☎</div>
+    <h1 id="ringName">Incoming call</h1>
+    <p class="ring-sub" id="ringSub">Mobile</p>
+  </div>
+  <div class="ring-intro" id="ringIntro">
+    <p id="fromLine"></p>
+    <p class="big">Yeh practice call hai.</p>
+    <p>Asli jaisa lagega. Jo sahi lage, woh kijiye. Laal button se kabhi bhi kaat sakte hain.</p>
+  </div>
+  <div class="ring-btns">
+    <button id="decline" class="round red" aria-label="Kaat do">✕</button>
+    <button id="answer" class="round green" aria-label="Uthaiye">✆</button>
+  </div>
+</section>
+
+<!-- in call -->
+<section id="call" class="screen dark">
+  <div id="sms" class="sms" role="status">
+    <div class="sms-head"><b id="smsFrom">BX-BANK</b><span>abhi</span></div>
+    <div id="smsText"></div>
+  </div>
+  <div id="callScreen" class="call-body">
+    <div class="avatar small">☎</div>
+    <h2 id="callName">Caller</h2>
+    <p class="timer" id="callTimer">00:00</p>
+    <p class="mode-tag" id="modeTag"></p>
+    <div id="captions" class="captions"></div>
+    <div class="listen"><div id="level" class="level"></div></div>
+    <p class="call-status" id="callStatus"></p>
+    <div id="taps" class="taps"></div>
+  </div>
+  <div id="debit" class="debit"></div>
+  <div class="hang-wrap"><button id="hangup" class="round red big" aria-label="Kaat do">✕</button><span>Kaat do</span></div>
+</section>
+
+<section id="between" class="screen dark">
+  <div class="center"><p id="betweenText">Agli call aa rahi hai...</p></div>
+</section>
+
+<!-- debrief voice note -->
+<section id="debrief" class="screen light">
+  <div class="wrap">
+    <p class="eyebrow">Drill khatam. Ek voice note aaya hai.</p>
+    <div class="vn">
+      <div class="vn-head"><div class="vn-av">♪</div><b id="vnFrom">Coach</b></div>
+      <div class="vn-track"><div id="vnBar" class="vn-bar"></div></div>
+      <button id="vnPlay" class="btn ghost">▶ Sunein</button>
+      <div id="vnLines" class="vn-lines"></div>
+    </div>
+    <button id="toCard" class="btn primary">Result dekhein</button>
+  </div>
+</section>
+
+<!-- result card -->
+<section id="card" class="screen light">
+  <div class="wrap">
+    <p class="eyebrow">Kaat Do · result</p>
+    <h1 id="cardVerdict" class="verdict">Pakka</h1>
+    <p id="cardSub" class="sub"></p>
+    <p id="cardFast" class="fast"></p>
+    <ul id="cardCalls" class="calls"></ul>
+    <p id="cardMode" class="muted"></p>
+    <div class="rule">
+      <b>Darr, Raaz, Paisa.</b> Teeno mein se ek bhi ho, toh kaat do.<br>
+      Phir ghar pe phone kijiye, ya 1930 (cyber crime helpline).
+    </div>
+    <button id="shareBtn" class="btn primary">Result share karein</button>
+    <a id="setupLink" class="btn ghost stranger-only" href="/setup">Apne parents ko apni awaaz mein bhejein</a>
+    <button id="againBtn" class="btn ghost">Phir se practice</button>
+    <p class="muted small">Asli practice link sirf ghar walon se aata hai. Sab naam aur number kaalpanik hain.</p>
+  </div>
+</section>
+
+<script src="/mic.js"></script>
+<script src="/card.js"></script>
+<script src="/call.js"></script>
+</body>
+</html>

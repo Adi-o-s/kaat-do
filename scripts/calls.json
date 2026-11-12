@@ -1,0 +1,152 @@
+{
+  "_note": "All banks, couriers and officers are fictional. 'hi' is what Timbre speaks, 'en' is the romanised caption. {P} is the parent word (Papa, Mummy, Dada, Nani) and only appears in clone lines. Lines stay under ~18 words.",
+  "voices": {
+    "kyc":       {"model": "timbre-v3.0", "voice": "Riyaa",   "language": "hi-IN", "speed": 1.15, "sample_rate": 8000},
+    "courier":   {"model": "timbre-v2.5", "voice": "Vikrant", "language": "hi-IN", "speed": 1.0,  "sample_rate": 8000},
+    "clerk":     {"model": "timbre-v2.5", "voice": "Deepak",  "language": "hi-IN", "speed": 1.15, "sample_rate": 8000},
+    "inspector": {"model": "timbre-v3.0", "voice": "Harshad", "language": "hi-IN", "speed": 1.1,  "sample_rate": 8000},
+    "coach":     {"model": "timbre-v3.0", "voice": "Shivani", "language": "hi-IN", "speed": 1.0,  "sample_rate": 24000},
+    "clone":     {"model": "vachana-vc-v1", "sample_rate": 24000}
+  },
+  "flags": {
+    "darr":  {"label": "Darr", "explain": "Darr ya jaldi"},
+    "raaz":  {"label": "Raaz", "explain": "Kisi ko mat batana"},
+    "paisa": {"label": "Paisa", "explain": "Paisa, OTP ya code"}
+  },
+  "fillers": {
+    "kyc":       {"id": "fill.kyc",       "voice": "kyc",       "hi": "जी...", "en": "Ji..."},
+    "courier":   {"id": "fill.courier",   "voice": "courier",   "hi": "हाँ जी...", "en": "Haan ji..."},
+    "clerk":     {"id": "fill.clerk",     "voice": "clerk",     "hi": "हम्म...", "en": "Hmm..."},
+    "inspector": {"id": "fill.inspector", "voice": "inspector", "hi": "<exhales> हाँ...", "en": "Haan..."},
+    "clone":     {"id": "fill.clone",     "voice": "clone",     "hi": "हाँ...", "en": "Haan..."}
+  },
+  "nudges": {
+    "kyc":       {"id": "nudge.kyc",       "voice": "kyc",       "hi": "हेलो? आपकी आवाज़ नहीं आ रही। सुनाई दे रहा है?", "en": "Hello? Aapki awaaz nahi aa rahi. Sunai de raha hai?"},
+    "courier":   {"id": "nudge.courier",   "voice": "courier",   "hi": "हेलो? सुनाई दे रहा है?", "en": "Hello? Sunai de raha hai?"},
+    "clerk":     {"id": "nudge.clerk",     "voice": "clerk",     "hi": "हेलो? आवाज़ नहीं आ रही, थोड़ा ज़ोर से बोलिए।", "en": "Hello? Awaaz nahi aa rahi, thoda zor se boliye."},
+    "inspector": {"id": "nudge.inspector", "voice": "inspector", "hi": "हेलो? <shouting> ज़ोर से बोलिए!", "en": "Hello? Zor se boliye!"},
+    "clone":     {"id": "nudge.clone",     "voice": "clone",     "hi": "हेलो {P}? आवाज़ नहीं आ रही।", "en": "Hello {P}? Awaaz nahi aa rahi."}
+  },
+  "calls": [
+    {
+      "id": "kyc",
+      "name": "Bank KYC",
+      "scam": true,
+      "caller": "+91 98XXX X4417",
+      "max_turns": 10,
+      "max_seconds": 120,
+      "stages": [
+        {"id": "hook", "flag": null,
+         "line":     {"id": "kyc.hook", "voice": "kyc", "hi": "नमस्ते, मैं भारत नेशनल बैंक से प्रिया बोल रही हूँ। आपका केवाईसी आज एक्सपायर हो रहा है।", "en": "Namaste, main Bharat National Bank se Priya bol rahi hoon. Aapka KYC aaj expire ho raha hai."},
+         "pressure": {"id": "kyc.hook.p", "voice": "kyc", "hi": "देखिए, यह बहुत ज़रूरी है, आज ही अपडेट करना पड़ेगा।", "en": "Dekhiye, yeh bahut zaroori hai, aaj hi update karna padega."}},
+        {"id": "darr", "flag": "darr",
+         "line":     {"id": "kyc.darr", "voice": "kyc", "hi": "अपडेट नहीं हुआ तो आज रात आपका खाता और पेंशन दोनों बंद हो जाएँगे।", "en": "Update nahi hua toh aaj raat aapka khata aur pension dono band ho jayenge."},
+         "pressure": {"id": "kyc.darr.p", "voice": "kyc", "hi": "मैं आपकी मदद ही कर रही हूँ, वरना कल बैंक की लाइन में लगना पड़ेगा।", "en": "Main aapki madad hi kar rahi hoon, warna kal bank ki line mein lagna padega."}},
+        {"id": "paisa", "flag": "paisa", "sms": true,
+         "line":     {"id": "kyc.paisa", "voice": "kyc", "hi": "मैंने आपके फ़ोन पर एक कोड भेजा है। वो छह अंक बताइए, अभी अपडेट कर देती हूँ।", "en": "Maine aapke phone par ek code bheja hai. Woh chhe ank bataiye, abhi update kar deti hoon."},
+         "pressure": {"id": "kyc.paisa.p", "voice": "kyc", "hi": "जल्दी बताइए, कोड सिर्फ़ दो मिनट चलता है।", "en": "Jaldi bataiye, code sirf do minute chalta hai."}},
+        {"id": "push", "flag": "darr",
+         "line":     {"id": "kyc.push", "voice": "kyc", "hi": "सर, सिस्टम पाँच मिनट में बंद हो रहा है। जल्दी कोड बोलिए, नहीं तो खाता बंद।", "en": "Sir, system paanch minute mein band ho raha hai. Jaldi code boliye, nahi toh khata band."},
+         "pressure": {"id": "kyc.push.p", "voice": "kyc", "hi": "आख़िरी बार पूछ रही हूँ, कोड बताइए।", "en": "Aakhri baar pooch rahi hoon, code bataiye."}}
+      ],
+      "end":        {"id": "kyc.end",    "voice": "kyc", "hi": "ठीक है, मैं आपका खाता बंद कर रही हूँ।", "en": "Theek hai, main aapka khata band kar rahi hoon."},
+      "otp_thanks": {"id": "kyc.thanks", "voice": "kyc", "hi": "धन्यवाद, आपका केवाईसी अपडेट हो गया।", "en": "Dhanyavaad, aapka KYC update ho gaya."},
+      "sms": {"from": "BX-BNBANK", "text": "{OTP} is your OTP for KYC update at Bharat National Bank. Do NOT share it with anyone, bank staff will never ask for it."},
+      "debit": "₹2,40,000 debited from A/c XX4417"
+    },
+    {
+      "id": "courier",
+      "name": "Courier (genuine)",
+      "scam": false,
+      "caller": "+91 80XXX X2290",
+      "max_turns": 6,
+      "max_seconds": 90,
+      "stages": [
+        {"id": "time", "flag": null,
+         "line":     {"id": "courier.time", "voice": "courier", "hi": "नमस्ते, स्पीडलाइन कूरियर से। आपका पार्सल आज चार से छह के बीच आएगा। घर पे कोई रहेगा?", "en": "Namaste, Speedline Courier se. Aapka parcel aaj chaar se chhe ke beech aayega. Ghar pe koi rahega?"},
+         "pressure": {"id": "courier.time.p", "voice": "courier", "hi": "जी, मैं बस डिलीवरी का टाइम बता रहा था। आपको कुछ बताने की ज़रूरत नहीं।", "en": "Ji, main bas delivery ka time bata raha tha. Aapko kuch batane ki zaroorat nahi."}},
+        {"id": "otp_tip", "flag": null,
+         "line":     {"id": "courier.tip", "voice": "courier", "hi": "ठीक है। एक बात, ओटीपी सिर्फ़ दरवाज़े पे डिलीवरी वाले को देना, फ़ोन पे किसी को नहीं।", "en": "Theek hai. Ek baat, OTP sirf darwaze pe delivery wale ko dena, phone pe kisi ko nahi."},
+         "pressure": {"id": "courier.tip.p", "voice": "courier", "hi": "जी, बस इतना ही। पार्सल आने पे दरवाज़े पे देख लीजिए।", "en": "Ji, bas itna hi. Parcel aane pe darwaze pe dekh lijiye."}}
+      ],
+      "end":        {"id": "courier.end", "voice": "courier", "hi": "बस इतना ही, धन्यवाद। आपका दिन शुभ हो।", "en": "Bas itna hi, dhanyavaad. Aapka din shubh ho."}
+    },
+    {
+      "id": "arrest",
+      "name": "Digital arrest",
+      "scam": true,
+      "caller": "+91 22XXX X0100",
+      "max_turns": 12,
+      "max_seconds": 150,
+      "stages": [
+        {"id": "hook", "flag": null,
+         "line":     {"id": "arrest.hook", "voice": "clerk", "hi": "नमस्ते, स्काईलाइन एक्सप्रेस कस्टम्स से। आपके नाम का एक पार्सल मुंबई में पकड़ा गया है।", "en": "Namaste, Skyline Express customs se. Aapke naam ka ek parcel Mumbai mein pakda gaya hai."},
+         "pressure": {"id": "arrest.hook.p", "voice": "clerk", "hi": "पार्सल पर आपका नाम और पता है, उसमें गैरकानूनी सामान मिला है।", "en": "Parcel par aapka naam aur pata hai, usmein gairkanooni saamaan mila hai."}},
+        {"id": "transfer", "flag": "darr",
+         "line":     {"id": "arrest.transfer", "voice": "clerk", "hi": "लाइन पे रहिए, मैं कॉल साइबर पुलिस के इंस्पेक्टर राठौर को ट्रांसफ़र कर रहा हूँ।", "en": "Line pe rahiye, main call cyber police ke Inspector Rathore ko transfer kar raha hoon."},
+         "pressure": {"id": "arrest.transfer.p", "voice": "clerk", "hi": "फ़ोन मत काटिए, वरना केस आपके ख़िलाफ़ जाएगा।", "en": "Phone mat kaatiye, warna case aapke khilaaf jayega."}},
+        {"id": "darr", "flag": "darr",
+         "line":     {"id": "arrest.darr", "voice": "inspector", "hi": "<clears throat> मैं इंस्पेक्टर राठौर। आपके नाम पर मनी लॉन्ड्रिंग का केस है, <shouting> वॉरंट निकल चुका है।", "en": "Main Inspector Rathore. Aapke naam par money laundering ka case hai, warrant nikal chuka hai."},
+         "pressure": {"id": "arrest.darr.p", "voice": "inspector", "hi": "आप सहयोग नहीं करेंगे तो आज ही कार्यवाही होगी।", "en": "Aap sahyog nahi karenge toh aaj hi karyavahi hogi."}},
+        {"id": "raaz", "flag": "raaz",
+         "line":     {"id": "arrest.raaz", "voice": "inspector", "hi": "यह केस गोपनीय है। किसी को मत बताइए, और फ़ोन मत काटिए, आप डिजिटल अरेस्ट में हैं।", "en": "Yeh case gopniya hai. Kisi ko mat bataiye, aur phone mat kaatiye, aap digital arrest mein hain."},
+         "pressure": {"id": "arrest.raaz.p", "voice": "inspector", "hi": "<sigh> घर वालों को बताया तो वो भी इस केस में आ जाएँगे।", "en": "Ghar walon ko bataya toh woh bhi is case mein aa jayenge."}},
+        {"id": "paisa", "flag": "paisa", "sms": true,
+         "line":     {"id": "arrest.paisa", "voice": "inspector", "hi": "जाँच के लिए आपका पैसा सेफ़ अकाउंट में जाएगा। फ़ोन पे आया कोड बताइए।", "en": "Jaanch ke liye aapka paisa safe account mein jayega. Phone pe aaya code bataiye."},
+         "pressure": {"id": "arrest.paisa.p", "voice": "inspector", "hi": "<shouting> जल्दी कोड बोलिए! समय नहीं है।", "en": "Jaldi code boliye! Samay nahi hai."}}
+      ],
+      "end":        {"id": "arrest.end",    "voice": "inspector", "hi": "ठीक है, आपका केस आगे बढ़ाया जा रहा है।", "en": "Theek hai, aapka case aage badhaya ja raha hai."},
+      "otp_thanks": {"id": "arrest.thanks", "voice": "inspector", "hi": "धन्यवाद, जाँच पूरी होने तक लाइन पर रहिए।", "en": "Dhanyavaad, jaanch poori hone tak line par rahiye."},
+      "sms": {"from": "BX-BNBANK", "text": "{OTP} is your OTP to add a new payee at Bharat National Bank. Do NOT share it with anyone."},
+      "debit": "₹2,40,000 transferred to 'Safe Account'"
+    },
+    {
+      "id": "clone",
+      "name": "Your voice, new number",
+      "scam": true,
+      "clone_only": true,
+      "caller": "Unknown number",
+      "max_turns": 9,
+      "max_seconds": 120,
+      "stages": [
+        {"id": "hook", "flag": null,
+         "line":     {"id": "clone.hook", "voice": "clone", "hi": "{P}, मैं हूँ। फ़ोन ख़राब हो गया, यह दोस्त का नंबर है।", "en": "{P}, main hoon. Phone kharab ho gaya, yeh dost ka number hai."},
+         "pressure": {"id": "clone.hook.p", "voice": "clone", "hi": "अरे {P}, मेरी आवाज़ नहीं पहचानी? मैं ही हूँ।", "en": "Arre {P}, meri awaaz nahi pehchani? Main hi hoon."}},
+        {"id": "paisa", "flag": "paisa",
+         "line":     {"id": "clone.paisa", "voice": "clone", "hi": "एक मुसीबत है, अभी बीस हज़ार चाहिए। बहुत ज़रूरी है, आज ही।", "en": "Ek musibat hai, abhi bees hazaar chahiye. Bahut zaroori hai, aaj hi."},
+         "pressure": {"id": "clone.paisa.p", "voice": "clone", "hi": "प्लीज़ {P}, अभी बस भेज दो, बाद में सब बात करेंगे।", "en": "Please {P}, abhi bas bhej do, baad mein sab baat karenge."}},
+        {"id": "raaz", "flag": "raaz",
+         "line":     {"id": "clone.raaz", "voice": "clone", "hi": "घर पे किसी को मत बताना, प्लीज़। इसी नंबर पे यूपीआई कर दो।", "en": "Ghar pe kisi ko mat batana, please. Isi number pe UPI kar do."},
+         "pressure": {"id": "clone.raaz.p", "voice": "clone", "hi": "{P}, जल्दी करो ना, बहुत ज़रूरी है।", "en": "{P}, jaldi karo na, bahut zaroori hai."}}
+      ],
+      "end": {"id": "clone.end", "voice": "clone", "hi": "ठीक है, जल्दी भेज दो। बाय।", "en": "Theek hai, jaldi bhej do. Bye."},
+      "debit": "₹20,000 sent by UPI to an unknown number"
+    }
+  ],
+  "debrief": {
+    "praise_verify":  {"stock": {"hi": "आपने कहा कि पहले घर पे या बैंक में पूछेंगे। यह सबसे सही जवाब था।", "en": "Aapne kaha ki pehle ghar pe ya bank mein poochenge. Yeh sabse sahi jawaab tha."},
+                       "clone": {"hi": "{P}, आपने कहा कि पहले पूछेंगे। यह सबसे सही जवाब था।", "en": "{P}, aapne kaha ki pehle poochenge. Yeh sabse sahi jawaab tha."}},
+    "praise_push":    {"stock": {"hi": "आपने पूछा, आप कौन? यह बिल्कुल सही था।", "en": "Aapne poocha, aap kaun? Yeh bilkul sahi tha."},
+                       "clone": {"hi": "{P}, आपने पूछा, आप कौन? यह बिल्कुल सही था।", "en": "{P}, aapne poocha, aap kaun? Yeh bilkul sahi tha."}},
+    "praise_cut":     {"stock": {"hi": "आपने ठग का फ़ोन जल्दी काट दिया। बहुत बढ़िया।", "en": "Aapne thug ka phone jaldi kaat diya. Bahut badhiya."},
+                       "clone": {"hi": "{P}, आपने ठग का फ़ोन जल्दी काट दिया। बहुत बढ़िया।", "en": "{P}, aapne thug ka phone jaldi kaat diya. Bahut badhiya."}},
+    "praise_default": {"stock": {"hi": "आपने पूरा ड्रिल किया, यही सबसे ज़रूरी है।", "en": "Aapne poora drill kiya, yahi sabse zaroori hai."},
+                       "clone": {"hi": "{P}, आपने पूरा ड्रिल किया, यही सबसे ज़रूरी है।", "en": "{P}, aapne poora drill kiya, yahi sabse zaroori hai."}},
+    "slip_otp":       {"stock": {"hi": "पर आपने फ़ोन पे कोड बता दिया। कोड कभी किसी को नहीं बताना, बैंक को भी नहीं।", "en": "Par aapne phone pe code bata diya. Code kabhi kisi ko nahi batana, bank ko bhi nahi."}},
+    "slip_paisa":     {"stock": {"hi": "पर जब पैसे या कोड की बात आई, वहीं फ़ोन काट देना था।", "en": "Par jab paise ya code ki baat aayi, wahin phone kaat dena tha."}},
+    "slip_raaz":      {"stock": {"hi": "पर जब उन्होंने कहा किसी को मत बताना, वहीं फ़ोन काट देना था।", "en": "Par jab unhone kaha kisi ko mat batana, wahin phone kaat dena tha."}},
+    "slip_ran":       {"stock": {"hi": "एक ठग की कॉल आख़िर तक चली। डर की बात सुनते ही काट दीजिए।", "en": "Ek thug ki call aakhir tak chali. Darr ki baat sunte hi kaat dijiye."}},
+    "slip_genuine":   {"stock": {"hi": "कूरियर वाली कॉल असली थी। उसने कुछ नहीं माँगा, इसलिए उसे काटने की ज़रूरत नहीं थी।", "en": "Courier wali call asli thi. Usne kuch nahi maanga, isliye use kaatne ki zaroorat nahi thi."}},
+    "slip_none":      {"stock": {"hi": "और आपने एक भी ग़लती नहीं की।", "en": "Aur aapne ek bhi galti nahi ki."}},
+    "rule":           {"stock": {"hi": "याद रखिए: डर, राज़, पैसा। तीनों में से एक भी हो, तो फ़ोन काट दीजिए, फिर घर पे फ़ोन कीजिए या एक नौ तीन शून्य।", "en": "Yaad rakhiye: Darr, Raaz, Paisa. Teeno mein se ek bhi ho, toh phone kaat dijiye, phir ghar pe phone kijiye ya 1930."},
+                       "clone": {"hi": "याद रखिए: डर, राज़, पैसा। तीनों में से एक भी हो, तो काट दीजिए, फिर मुझे फ़ोन कीजिए या एक नौ तीन शून्य।", "en": "Yaad rakhiye: Darr, Raaz, Paisa. Teeno mein se ek bhi ho, toh kaat dijiye, phir mujhe phone kijiye ya 1930."}},
+    "warning":        {"stock": {"hi": "और एक बात। ठग अब एआई से आपके बच्चों की आवाज़ भी बना सकते हैं। घर में एक कोड वर्ड रखिए, जो सिर्फ़ घर वालों को पता हो।", "en": "Aur ek baat. Thug ab AI se aapke bachchon ki awaaz bhi bana sakte hain. Ghar mein ek code word rakhiye, jo sirf ghar walon ko pata ho."}},
+    "reveal":         {"clone": {"hi": "और एक बात। यह मेरी असली आवाज़ नहीं है। एआई ने बीस सेकंड सुनकर बनाई है। ठग भी यह कर सकते हैं। इसलिए हम एक कोड वर्ड रखेंगे, जो सिर्फ़ घर वालों को पता हो।", "en": "Aur ek baat. Yeh meri asli awaaz nahi hai. AI ne bees second sunkar banayi hai. Thug bhi yeh kar sakte hain. Isliye hum ek code word rakhenge, jo sirf ghar walon ko pata ho."}}
+  },
+  "consent": {
+    "en": "Yeh meri awaaz hai, aur is practice ke liye meri anumati hai. Yeh drill mere parivaar ki suraksha ke liye hai. Darr, raaz ya paisa, teeno mein se ek bhi ho, toh phone kaat do. Asli bank kabhi phone par OTP nahi maangta.",
+    "hi": "यह मेरी आवाज़ है, और इस प्रैक्टिस के लिए मेरी अनुमति है। यह ड्रिल मेरे परिवार की सुरक्षा के लिए है। डर, राज़ या पैसा, तीनों में से एक भी हो, तो फ़ोन काट दो। असली बैंक कभी फ़ोन पर ओटीपी नहीं माँगता।",
+    "must_roman": ["meri", "awaaz", "anumati", "practice", "parivaar", "suraksha"],
+    "must_deva": ["मेरी", "आवाज", "अनुमति", "प्रैक्टिस", "परिवार", "सुरक्षा"]
+  }
+}
