@@ -66,3 +66,7 @@ def test_consent():
     assert ok
     ok, _ = consent_ok("hello hello mic testing one two three", must_r, must_d)
     assert not ok
+
+def test_mixed_script_verify():
+    assert classify("मैं खुद bank जाकर कर लूँगा।", OTP)["kind"] == "verify"
+    assert classify("Main khud bank jaakar kar lunga.", OTP)["kind"] == "verify"

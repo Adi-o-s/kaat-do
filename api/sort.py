@@ -101,7 +101,7 @@ HANGUP = [
 VERIFY = [
     "beta se", "bete se", "beti se", "bachchon se", "bacchon se", "pooch leta", "pooch leti", "puch leta",
     "puch leti", "pooch ke", "puch ke", "poochunga", "poochungi", "puchunga", "puchungi", "bank jaake",
-    "bank jake", "bank jaunga", "bank jaungi", "bank aa", "branch", "wapas call", "vapas call", "call back",
+    "bank jake", "bank jaakar", "bank jakar", "khud bank", "bank जा", "bank आ", "खुद bank", "branch जा", "bank jaunga", "bank jaungi", "bank aa", "branch", "wapas call", "vapas call", "call back",
     "callback", "khud call", "khud phone", "baad mein", "bad mein", "check karunga", "check karungi",
     "check kar leta", "check kar leti", "verify", "confirm kar", "ghar pe pooch", "police station aa",
     "thane aa", "station aa jaunga", "station aa jaungi",

@@ -120,6 +120,11 @@ async def clone_embedding(wav: bytes) -> dict:
     r = await _post("/api/v1/tts/voice-clone/embeddings", timeout=45.0,
                     files={"audio_file": ("consent.wav", wav, "audio/wav")})
     j = r.json()
+    # Live API wraps it as {success, data: {voice_clone_embedding: {...}}}; the docs show it bare.
+    if "embedding" not in j:
+        j = (j.get("data") or {}).get("voice_clone_embedding") or (j.get("data") or {})
+    if "embedding" not in j:
+        raise GnaniError(f"unexpected embedding response: {str(j)[:120]}")
     usage_add("clone_embeddings", 1)
     return {"embedding": j["embedding"], "shape": j.get("shape", [1, 768]), "dtype": j.get("dtype", "torch.bfloat16")}
 
