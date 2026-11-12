@@ -277,9 +277,9 @@ async def save_result(request: Request):
 
 
 VERDICT_COPY = {
-    "pakka": ("Pakka", "Every scam cut, the genuine call kept."),
-    "bach": ("Bach gaye", "Every scam cut, with a slip on the way."),
-    "phans": ("Phans gaye", "A scam got through this time. That is what practice is for."),
+    "pakka": ("Pakka", "Har scam kaata, aur asli call nahi kaati."),
+    "bach": ("Bach gaye", "Har scam kaata, par raste mein ek chook hui."),
+    "phans": ("Phans gaye", "Is baar ek scam nikal gaya. Isi liye practice hai."),
 }
 
 
@@ -291,9 +291,9 @@ async def result_page(rid: str):
     r = json.loads(f.read_text())
     title, sub = VERDICT_COPY.get(r.get("verdict"), ("Kaat Do", ""))
     who = html.escape(r.get("parent_word") or "Mere parent")
-    rows = "".join(f"<li>{html.escape(c.get('line', ''))}</li>" for c in (r.get("calls") or []))
+    rows = "".join(f"<li class='strip-plain'>{html.escape(c.get('line', ''))}</li>" for c in (r.get("calls") or []))
     fastest = r.get("fastest")
-    fast = f"<p class='fast'>Fastest cut: {int(fastest)} seconds</p>" if fastest else ""
+    fast = f"<p class='fast'>Sabse tez scam cut: {int(fastest)} second</p>" if fastest is not None else ""
     tpl = (WEB / "result.html").read_text()
     return tpl.replace("{{TITLE}}", html.escape(title)).replace("{{SUB}}", html.escape(sub)) \
         .replace("{{WHO}}", who).replace("{{ROWS}}", rows).replace("{{FAST}}", fast) \

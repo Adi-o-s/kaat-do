@@ -31,10 +31,12 @@
     if (!(await A.openMic())) { $("#err").textContent = "Microphone blocked. Open this page in Chrome or Safari and allow the mic."; return; }
     chunks = []; recording = true; t0 = performance.now();
     A.listening = (d) => chunks.push(new Float32Array(d));
-    $("#recBtn").textContent = "■ Stop";
+    $("#recBtn").textContent = "Stop";
+    $("#recBtn").classList.add("on");
+    $("#recInfo").textContent = "Recording. Read the whole passage, then stop.";
     tick = setInterval(() => {
       const s = (performance.now() - t0) / 1000;
-      $("#recInfo").textContent = `Recording… ${s.toFixed(0)} s`;
+      $("#recTime").textContent = `0:${String(Math.floor(s)).padStart(2, "0")}`;
       if (s >= 29) stopRec();
     }, 250);
   }
@@ -42,11 +44,12 @@
   function stopRec() {
     recording = false; A.listening = null; clearInterval(tick);
     const secs = (performance.now() - t0) / 1000;
-    $("#recBtn").textContent = "● Record again";
+    $("#recBtn").textContent = "Again";
+    $("#recBtn").classList.remove("on");
     if (secs < 10) { wav = null; $("#err").textContent = "That was short. Please read the whole sentence (about 20 seconds)."; ready(); return; }
     const pcm = window.KD.downsample(window.KD.concat(chunks), A.ctx.sampleRate, 16000);
     wav = window.KD.encodeWav(pcm, 16000);
-    $("#recInfo").textContent = `Recorded ${secs.toFixed(0)} seconds.`;
+    $("#recInfo").textContent = `Recorded. Tap Again to redo it.`;
     ready();
   }
 

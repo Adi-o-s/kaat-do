@@ -6,20 +6,23 @@
 <title>Kaat Do · {{TITLE}}</title>
 <meta property="og:title" content="{{WHO}}: {{TITLE}} on Kaat Do">
 <meta property="og:description" content="Three practice scam calls, one genuine. Can your parents tell which to cut?">
+<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-<div class="practice">PRACTICE · यह अभ्यास है</div>
-<section class="screen on light">
+<main class="device"><div class="practice">Practice · यह अभ्यास है</div>
+<section class="screen on paper">
   <div class="wrap">
-    <p class="eyebrow">Kaat Do · {{WHO}} ka result</p>
-    <h1 class="verdict {{VERDICT}}">{{TITLE}}</h1>
-    <p class="sub">{{SUB}}</p>
-    {{FAST}}
-    <ul class="calls">{{ROWS}}</ul>
-    <div class="rule"><b>Darr, Raaz, Paisa.</b> Teeno mein se ek bhi ho, toh kaat do. Phir ghar pe phone kijiye, ya 1930.</div>
+    <div class="verdict-block {{VERDICT}}">
+      <p class="verdict-who">{{WHO}} ka Kaat Do result</p>
+      <h1 class="verdict">{{TITLE}}</h1>
+      <p class="sub">{{SUB}}</p>
+      {{FAST}}
+    </div>
+    <ul class="strips">{{ROWS}}</ul>
+    <section class="rule-sec"><h2 class="sec-title">Yaad rakhne wali baat</h2><div class="rule3"><b>Darr</b><b>Raaz</b><b>Paisa</b></div><p>Teeno mein se ek bhi ho, toh kaat do. Phir ghar pe phone kijiye, ya 1930.</p></section>
     <a class="btn primary" href="/">Apne parents ke saath try karein</a>
   </div>
-</section>
+</section></main>
 </body>
 </html>

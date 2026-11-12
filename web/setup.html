@@ -5,49 +5,69 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Kaat Do · Send in your voice</title>
 <meta name="description" content="Send your parents a scam-call practice drill in your own voice.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
 </head>
-<body>
-<div class="practice">PRACTICE · यह अभ्यास है</div>
-<section class="screen on light">
-  <div class="wrap" id="form">
-    <p class="eyebrow">Kaat Do · one-minute setup</p>
-    <h1 class="title">Send it in your voice</h1>
-    <p class="muted">Your parent gets three practice calls, plus one in your voice from a "new number" asking for money. The debrief comes in your voice and ends by telling them it was AI.</p>
+<body class="setup-page">
+<aside class="about" aria-label="How it works">
+  <p class="about-name">Kaat Do</p>
+  <p class="about-title">Send it in your own voice</p>
+  <p class="about-lede">Your parent gets three practice calls, then a fourth from a "new number" in your voice, asking for money.</p>
+  <p class="about-rule">The debrief comes in your voice too, and ends by telling them it was AI made from 20 seconds of you. Then you agree a family code word.</p>
+  <p class="about-foot">Your voice only speaks fixed practice lines. There is no box to make it say anything else. It is deleted after 7 days.</p>
+</aside>
 
-    <div class="field"><label for="name">Your name (shown to your parent)</label>
-      <input id="name" maxlength="24" placeholder="Aditya" autocomplete="given-name"></div>
+<main class="device">
+  <div class="practice" role="note">Practice · यह अभ्यास है</div>
+  <section class="screen on paper">
+    <div class="wrap" id="form">
+      <h1 class="screen-title">Send it in your voice</h1>
+      <p class="lede">One minute. Three steps.</p>
 
-    <div class="field"><label>Who is it for?</label><div class="chips" id="who"></div></div>
+      <div class="step">
+        <h2>Who is it from, and for?</h2>
+        <div class="field"><label for="name" class="muted">Your name, as your parent knows it</label>
+          <input id="name" maxlength="24" placeholder="Adi" autocomplete="given-name"></div>
+        <div class="chips" id="who" role="group" aria-label="Who is it for"></div>
+      </div>
 
-    <label class="rec"><input type="checkbox" id="cloneCall" checked> Include the call in my voice asking for money</label>
+      <div class="step">
+        <h2>Read this aloud</h2>
+        <div class="prompter" id="consent"></div>
+        <div class="recorder">
+          <button class="rec-btn" id="recBtn" aria-label="Record">Record</button>
+          <p class="rec-info"><span class="rec-time" id="recTime">0:00</span><span id="recInfo">About 20 seconds. Recorded here, live.</span></p>
+        </div>
+        <p class="err" id="err"></p>
+      </div>
 
-    <div class="field"><label>Read this aloud (about 20 seconds)</label>
-      <div class="consent" id="consent"></div></div>
+      <div class="step">
+        <h2>The fourth call</h2>
+        <label class="toggle"><input type="checkbox" id="cloneCall" checked> Include a call in my voice from a new number, asking for money</label>
+      </div>
 
-    <button class="btn primary" id="recBtn">● Record</button>
-    <p class="muted small" id="recInfo">Recorded live here, never uploaded as a file. Your voice is only used for the fixed practice lines and is deleted after 7 days.</p>
-    <p class="err" id="err"></p>
-    <button class="btn primary" id="makeBtn" disabled>Make my drill</button>
-  </div>
+      <button class="btn primary" id="makeBtn" disabled>Make my drill</button>
+      <p class="muted small">Your voice is only used for the fixed practice lines and is deleted after 7 days.</p>
+    </div>
 
-  <div class="wrap" id="making" style="display:none">
-    <p class="eyebrow">Kaat Do</p>
-    <h1 class="title" id="makingTitle">Making your voice…</h1>
-    <div class="progress"><div id="bar"></div></div>
-    <p class="muted" id="makingInfo"></p>
-  </div>
+    <div class="wrap" id="making" style="display:none">
+      <h2 class="screen-title" id="makingTitle">Making your voice…</h2>
+      <div class="progress"><div id="bar"></div></div>
+      <p class="muted" id="makingInfo"></p>
+    </div>
 
-  <div class="wrap" id="done" style="display:none">
-    <p class="eyebrow">Ready</p>
-    <h1 class="title">Your drill is ready</h1>
-    <p>Tell your parent it is coming first, then send the link. A real practice link only ever comes from family.</p>
-    <div class="consent" id="link" style="font-size:15px;word-break:break-all"></div>
-    <button class="btn primary" id="waBtn">Send on WhatsApp</button>
-    <button class="btn ghost" id="copyBtn">Copy link</button>
-    <a class="btn ghost" id="tryBtn" href="#">Try it yourself first</a>
-  </div>
-</section>
+    <div class="wrap" id="done" style="display:none">
+      <h2 class="screen-title">Your drill is ready</h2>
+      <p class="lede">Tell your parent it is coming first, then send the link. A real practice link only ever comes from family.</p>
+      <div class="linkbox" id="link"></div>
+      <button class="btn primary" id="waBtn">Send on WhatsApp</button>
+      <button class="btn" id="copyBtn">Copy link</button>
+      <a class="btn plain" id="tryBtn" href="#">Try it yourself first</a>
+    </div>
+  </section>
+</main>
 <script src="/mic.js"></script>
 <script src="/setup.js"></script>
 </body>

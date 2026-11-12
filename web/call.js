@@ -103,7 +103,7 @@
     return new Promise((resolve) => {
       show("ring");
       $("#ringName").textContent = call.clone_only ? "Unknown number" : call.caller;
-      $("#ringSub").textContent = call.clone_only ? "Naya number" : "Mobile";
+      $("#ringSub").textContent = call.clone_only ? "Incoming call · Naya number" : "Incoming call · Mobile";
       $("#ringIntro").style.display = index === 0 ? "" : "none";
       $("#ringCount").textContent = `Practice call ${index + 1} / ${S.order.length}`;
       const tone = index === 0 ? { stop() {} } : A.ring();
@@ -245,7 +245,12 @@
     ctx.smsShown = true;
     const el = $("#sms");
     $("#smsFrom").textContent = ctx.call.sms.from;
-    $("#smsText").textContent = ctx.call.sms.text.replace("{OTP}", ctx.otp);
+    const [pre, post] = ctx.call.sms.text.split("{OTP}");
+    const t = $("#smsText");
+    t.textContent = "";
+    const b = document.createElement("b");
+    b.textContent = ctx.otp;
+    t.append(pre || "", b, post || "");
     el.classList.add("on");
   }
 
@@ -254,9 +259,9 @@
     if (S.mode === "tap") return tapReply(ctx);
     status("Aap boliye...");
     $("#callScreen").classList.add("listening");
-    const rec = await A.listen({ onLevel: (l) => $("#level").style.transform = `scaleX(${0.08 + l * 0.92})` });
+    const rec = await A.listen({ onLevel: setBars });
     $("#callScreen").classList.remove("listening");
-    $("#level").style.transform = "scaleX(0.08)";
+    setBars(0);
     check(ctx);
     if (!rec) return { kind: "unclear", transcript: "" };
     status("");
@@ -284,6 +289,14 @@
     check(ctx);
     caption("me", out.transcript || "…");
     return { kind: out.kind || "unclear", transcript: out.transcript || "" };
+  }
+
+  const BAR_SHAPE = [0.45, 0.7, 0.9, 1, 0.9, 0.7, 0.45];
+  function setBars(l) {
+    document.querySelectorAll(".bars i").forEach((b, i) => {
+      const jitter = l > 0.05 ? 0.75 + Math.random() * 0.5 : 1;
+      b.style.height = `${Math.round(8 + l * 26 * BAR_SHAPE[i] * jitter)}px`;
+    });
   }
 
   function switchToTap() {
