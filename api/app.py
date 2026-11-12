@@ -130,7 +130,8 @@ def build_script(drill: dict | None) -> dict:
     for ln in _debrief_lines(personal):
         key = ln["id"].split(".", 1)[1]
         src = f"/drill-audio/{drill['id']}/{ln['id']}.mp3" if personal else _stock_src(ln["id"])
-        debrief[key] = {**ln, "src": src}
+        p = drill["parent_word"] if personal else ""
+        debrief[key] = {**ln, "src": src, "en": ln["en"].replace("{P}", p), "hi": ln["hi"].replace("{P}", PARENT_DEVA.get(p, p))}
     return {
         "personal": personal,
         "child_name": drill.get("child_name") if drill else None,
