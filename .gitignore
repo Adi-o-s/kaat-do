@@ -1,11 +1,20 @@
+# secrets and local state: never commit
 .env
+.env.*
+!.env.example
+.vercel
+data/
+recordings/
+gate1_clone.mp3
+
+# tooling
 __pycache__/
 .venv/
 node_modules/
+.taste-skill/
+.DS_Store
+
+# audio: only the shipped clips and demo replies
 *.wav
 !web/audio/*.wav
-data/
-gate1_clone.mp3
-recordings/
-.taste-skill/
-.vercel
+!web/samples/*.wav
