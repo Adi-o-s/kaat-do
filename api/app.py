@@ -43,6 +43,12 @@ KEYTERMS = ["OTP", "code", "bank", "KYC", "police", "kaun", "nahi", "haan", "the
             "kaat", "rakh", "pooch", "double", "कौन", "नहीं", "हाँ", "ठीक है", "पूछ", "काट"]
 
 app = FastAPI(title="Kaat Do", docs_url=None, redoc_url=None)
+
+from fastapi.middleware.cors import CORSMiddleware  # noqa: E402
+
+# The GitHub Pages copy of the landing page calls the live demo API here.
+app.add_middleware(CORSMiddleware, allow_origins=["https://adi-o-s.github.io", "http://localhost:8000"],
+                   allow_methods=["GET", "POST"], allow_headers=["*"])
 USAGE_FILE = DATA / "usage.json"
 
 

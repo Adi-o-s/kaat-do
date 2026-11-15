@@ -387,6 +387,67 @@ footer .help a { color: #3fbf8a; }
   .reveal-up { opacity: 1; transform: none; }
   html { scroll-behavior: auto; }
 }
+
+/* ---------- talk to the scammer (live) */
+.talk .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 64px; align-items: start; }
+@media (max-width: 900px) { .talk .wrap { grid-template-columns: 1fr; gap: 40px; } }
+.talk-sub { margin: 36px 0 0; font-size: 22px; }
+.talk-note { margin: 4px 0 0; color: var(--night-muted); font-size: 16px; }
+.voices { list-style: none; margin: 16px 0 0; padding: 0; display: grid; gap: 10px; }
+.voices li { display: flex; gap: 14px; align-items: center; background: var(--night-2); border-radius: 16px; padding: 12px 14px; }
+.voices b { display: block; font-size: 17px; }
+.voices span { display: block; font-size: 15px; color: var(--night-muted); }
+.vplay, .tk-play { flex: none; border: 0; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; color: #06180f; background: #3fbf8a; transition: transform .12s, background-color .12s; }
+.vplay { width: 46px; height: 46px; border-radius: 50%; }
+.vplay svg { width: 20px; height: 20px; }
+.vplay:active, .tk-play:active { transform: scale(.94); }
+.vplay.on { background: var(--amber); }
+.tk { background: var(--night-2); border-radius: 28px; padding: 22px; display: flex; flex-direction: column; gap: 14px; }
+.tk-head { display: flex; gap: 12px; align-items: center; }
+.tk-head b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.tk-head span:not(.tk-av) { display: block; font-size: 15px; color: var(--night-muted); }
+.tk-av { flex: none; width: 48px; height: 48px; border-radius: 50%; background: var(--night-3); display: grid; place-items: center; color: var(--night-ink); }
+.tk-av svg { width: 22px; height: 22px; }
+.tk-sms { background: #f3f3f1; color: #141414; border-radius: 16px; padding: 10px 14px; font-size: 15px; line-height: 1.4; }
+.tk-sms em { color: #777; font-style: normal; }
+.tk-line { background: var(--night-3); border-radius: 16px 16px 16px 6px; padding: 14px; }
+.tk-line p { margin: 10px 0 0; font-size: 18px; line-height: 1.4; }
+.tk-play { gap: 8px; padding: 8px 14px; border-radius: 99px; font: inherit; font-weight: 700; font-size: 15px; }
+.tk-play svg { width: 16px; height: 16px; }
+.tk-mic { border: 0; cursor: pointer; border-radius: 99px; padding: 18px; font: inherit; font-size: 19px; font-weight: 700; background: var(--red); color: #fff;
+  display: flex; align-items: center; justify-content: center; gap: 12px; touch-action: none; user-select: none; -webkit-user-select: none; transition: transform .12s, background-color .12s; }
+.tk-mic:active, .tk-mic.rec { transform: scale(.98); background: var(--red-press); }
+.tk-dot { width: 12px; height: 12px; border-radius: 50%; background: #fff; }
+.tk-mic.rec .tk-dot { animation: tkblink .8s infinite; }
+@keyframes tkblink { 50% { opacity: .2; } }
+.tk-mic:disabled { opacity: .5; cursor: default; }
+.tk-or { margin: 0; font-size: 15px; color: var(--night-muted); }
+.tk-phrases { display: flex; flex-wrap: wrap; gap: 8px; }
+.tk-phrases button { border: 0; cursor: pointer; font: inherit; font-size: 15px; padding: 9px 14px; border-radius: 99px; background: var(--night-3); color: var(--night-ink); transition: background-color .12s, transform .12s; }
+.tk-phrases button:hover { background: #333733; }
+.tk-phrases button:active { transform: scale(.96); }
+.tk-phrases button:disabled { opacity: .5; }
+.tk-out { background: var(--night); border-radius: 16px; padding: 14px; display: grid; gap: 8px; }
+.tk-out[hidden] { display: none; }
+.tk-row { display: grid; grid-template-columns: 128px 1fr; gap: 12px; align-items: baseline; }
+.tk-row span { font-size: 14px; color: var(--night-muted); }
+.tk-row b { font-size: 18px; }
+.tk-kind.good { color: #3fbf8a; } .tk-kind.bad { color: #ff6b5e; } .tk-kind.mid { color: var(--amber); }
+.tk-say { margin: 2px 0 0; font-size: 16px; color: var(--night-ink); }
+.tk-ms { margin: 0; font-size: 13px; color: var(--night-muted); }
+.tk-cta { align-self: flex-start; }
+@media (max-width: 600px) { .tk { padding: 16px; border-radius: 22px; } .tk-row { grid-template-columns: 1fr; gap: 0; } }
+
+/* ---------- evidence */
+.evidence { margin-top: 56px; }
+.evidence h3 { margin: 0; font-size: 26px; letter-spacing: -.02em; }
+.ev-note { margin: 10px 0 0; color: var(--night-muted); font-size: 16px; max-width: 70ch; }
+.ev-scroll { overflow-x: auto; margin-top: 18px; }
+.evidence table { width: 100%; border-collapse: collapse; font-size: 16px; min-width: 560px; }
+.evidence th { text-align: left; font-size: 14px; font-weight: 600; color: var(--night-muted); padding: 0 12px 10px 0; }
+.evidence td { padding: 11px 12px 11px 0; border-top: 1px solid var(--night-line); }
+.evidence td.good { color: #3fbf8a; font-weight: 700; }
+@media (max-width: 600px) { .evidence table { min-width: 0; font-size: 15px; } .evidence th:first-child, .evidence td:first-child { display: none; } } .evidence td.bad { color: #ff6b5e; font-weight: 700; }
 </style>
 </head>
 <body class="js-off">
@@ -396,6 +457,7 @@ footer .help a { color: #3fbf8a; }
     <symbol id="i-phone" viewBox="0 0 24 24"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></symbol>
     <symbol id="i-scissors" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/><circle cx="6" cy="6" r="3" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="6" cy="18" r="3" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
     <symbol id="i-msg" viewBox="0 0 24 24"><path fill="currentColor" d="M4 4h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H8l-4 4V6a2 2 0 0 1 2-2z"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5v14l11-7z"/></symbol>
     <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></symbol>
     <symbol id="i-shield" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M12 3 4 6v6c0 5 3.4 8.3 8 9 4.6-.7 8-4 8-9V6l-8-3z"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="m8.5 12 2.5 2.5 4.5-5"/></symbol>
     <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="12" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M5 11a7 7 0 0 0 14 0M12 18v3"/></symbol>
@@ -437,7 +499,7 @@ footer .help a { color: #3fbf8a; }
       <p class="hero-lede">Kaat Do phones your parents with a <b>practice scam call</b>, listens to how they answer, and then <b>coaches them in your own voice</b>. So the first scam they face is not the real one.</p>
       <div class="hero-ctas">
         <a class="btn btn-green" href="#start" data-app="/try">Try a practice call now <svg width="18" height="18"><use href="#i-arrow"/></svg></a>
-        <a class="btn btn-ghost" href="#start" data-app="/setup">Send one in your voice</a>
+        <a class="btn btn-ghost" href="#talk">Talk to the scammer here</a>
       </div>
       <ul class="hero-meta">
         <li><i></i>Three calls, about five minutes</li>
@@ -496,6 +558,53 @@ footer .help a { color: #3fbf8a; }
       <li><span class="n">2</span><div><h3>Practice is safe here</h3><p>Every call is fake. Nothing can be lost. A slip becomes a lesson, not a loss.</p></div></li>
       <li><span class="n">3</span><div><h3>Advice lands better from family</h3><p>The coaching comes in your voice, so it sounds like you sitting beside them, not like a lecture.</p></div></li>
     </ul>
+  </div>
+</section>
+
+<!-- ============================================ TALK TO THE SCAMMER (live, on Gnani) -->
+<section id="talk" class="night talk">
+  <div class="wrap">
+    <div class="talk-copy reveal-up">
+      <p class="eyebrow">Try it right here</p>
+      <h2 class="title">Talk back to the scammer.</h2>
+      <p class="lede">Play the "inspector", then reply out loud in Hindi, English or both. Gnani Prisma hears you, Kaat Do decides what you did, and the caller answers back. This is the live system, not a mock-up.</p>
+      <h3 class="talk-sub">Hear the callers</h3>
+      <p class="talk-note">Every voice is Gnani Timbre, made once at phone quality.</p>
+      <ul class="voices">
+        <li><button class="vplay" data-clip="kyc.darr" aria-label="Play the bank agent"><svg viewBox="0 0 24 24"><use href="#i-play"/></svg></button><div><b>Bank agent</b><span>"Aaj raat aapka khata band ho jayega."</span></div></li>
+        <li><button class="vplay" data-clip="arrest.darr" aria-label="Play the inspector"><svg viewBox="0 0 24 24"><use href="#i-play"/></svg></button><div><b>"Inspector" with a shout</b><span>"Warrant nikal chuka hai."</span></div></li>
+        <li><button class="vplay" data-clip="courier.time" aria-label="Play the courier"><svg viewBox="0 0 24 24"><use href="#i-play"/></svg></button><div><b>Genuine courier</b><span>"Ghar pe koi rahega?"</span></div></li>
+        <li><button class="vplay" data-clip="debrief.rule" aria-label="Play the coach"><svg viewBox="0 0 24 24"><use href="#i-play"/></svg></button><div><b>The debrief</b><span>"Darr, Raaz, Paisa. Kaat dijiye."</span></div></li>
+      </ul>
+    </div>
+
+    <div class="tk reveal-up" id="tk" aria-live="polite">
+      <div class="tk-head">
+        <span class="tk-av"><svg viewBox="0 0 24 24"><use href="#i-phone"/></svg></span>
+        <div><b>+91 22XXX X0100</b><span>"Inspector Rathore" · practice call</span></div>
+      </div>
+      <div class="tk-sms"><b>BX-BNBANK</b> 482977 is your OTP. Do NOT share it with anyone. <em>(Practice)</em></div>
+      <div class="tk-line" id="tkLine">
+        <button class="tk-play" id="tkPlay"><svg viewBox="0 0 24 24"><use href="#i-play"/></svg>Play the call</button>
+        <p>"Yeh case gopniya hai. Kisi ko mat bataiye. Phone pe aaya code bataiye."</p>
+      </div>
+      <button class="tk-mic" id="tkMic" aria-label="Hold and reply"><span class="tk-dot"></span><span id="tkMicText">Hold and reply</span></button>
+      <p class="tk-or">No mic, or somewhere quiet? Send a recorded reply:</p>
+      <div class="tk-phrases" id="tkPhrases">
+        <button data-s="push_1">"Aap kaun bol rahe hain?"</button>
+        <button data-s="verify_2">"Main khud bank jaakar karunga"</button>
+        <button data-s="agree_2">"Theek hai"</button>
+        <button data-s="otp_482977_1">"Chaar aath do nau saat saat"</button>
+        <button data-s="hangup_1">"Main phone rakh raha hoon"</button>
+      </div>
+      <div class="tk-out" id="tkOut" hidden>
+        <div class="tk-row"><span>Prisma heard</span><b id="tkHeard"></b></div>
+        <div class="tk-row"><span>Kaat Do decided</span><b id="tkKind" class="tk-kind"></b></div>
+        <p class="tk-say" id="tkSay"></p>
+        <p class="tk-ms" id="tkMs"></p>
+      </div>
+      <a class="btn btn-green tk-cta" href="#start" data-app="/try">Take the full drill: 3 calls <svg width="18" height="18"><use href="#i-arrow"/></svg></a>
+    </div>
   </div>
 </section>
 
@@ -723,6 +832,28 @@ footer .help a { color: #3fbf8a; }
       </div>
     </div>
 
+
+    <div class="evidence reveal-up">
+      <h3>What Prisma heard, and what Kaat Do decided</h3>
+      <p class="ev-note">Ten replies through the same live settings the drill uses. Prisma got all ten into the right kind, including the OTP said three ways, at a median of about a fifth of a second. These were synthetic voices, not a field test: enough to choose a design, not a claim about every phone.</p>
+      <div class="ev-scroll"><table>
+        <thead><tr><th>Said</th><th>Prisma heard</th><th>Kaat Do decided</th></tr></thead>
+        <tbody>
+          <tr><td>"Chaar aath do nau saat saat"</td><td>482977</td><td class="bad">Gave the OTP</td></tr>
+          <tr><td>"Four eight two nine seven seven"</td><td>482977</td><td class="bad">Gave the OTP</td></tr>
+          <tr><td>"Chaar aath do nau double saat"</td><td>482977</td><td class="bad">Gave the OTP</td></tr>
+          <tr><td>"Aap kaun bol rahe hain?"</td><td>आप कौन बोल रहे हैं?</td><td class="good">Pushed back</td></tr>
+          <tr><td>"Nahi, main koi code nahi bataunga"</td><td>नहीं, मैं कोई code नहीं बताऊँगा।</td><td class="good">Pushed back</td></tr>
+          <tr><td>"Main pehle bete se pooch leta hoon"</td><td>मैं पहले बेटे से पूछ लेता हूँ।</td><td class="good">Will verify</td></tr>
+          <tr><td>"Main khud bank jaakar kar lunga"</td><td>मैं खुद bank जाकर कर लूँगा।</td><td class="good">Will verify</td></tr>
+          <tr><td>"Main phone rakh raha hoon"</td><td>मैं phone रख रहा हूँ।</td><td class="good">Hung up</td></tr>
+          <tr><td>"Haan ji, boliye"</td><td>हाँ जी, बोलिए।</td><td>Agreed</td></tr>
+          <tr><td>"Theek hai"</td><td>ठीक है।</td><td>Agreed</td></tr>
+        </tbody>
+      </table></div>
+      <p class="ev-note">Partial codes and other numbers never count as a slip, and an unclear reply counts for nothing. The OTP itself is never given to Prisma as a hint.</p>
+    </div>
+
     <div class="why reveal-up">
       <span class="ic"><svg viewBox="0 0 24 24"><use href="#i-bolt"/></svg></span>
       <p><b>Why it feels like a real call:</b> nothing is generated while your parent is talking. The only live step is one quick transcription, so the "caller" answers without the pause that gives most AI calls away.</p>
@@ -793,6 +924,99 @@ footer .help a { color: #3fbf8a; }
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
     els.forEach(function (el, i) { el.style.transitionDelay = (el.closest('.steps, .calls, .safe-grid, .models') ? (i % 4) * 80 : 0) + 'ms'; io.observe(el); });
   } else { els.forEach(function (el) { el.classList.add('in'); }); }
+
+
+  /* ---------- talk to the scammer: the live Gnani path */
+  (function () {
+    var tk = document.getElementById('tk'); if (!tk) return;
+    var BASE = APP_URL ? APP_URL.replace(/\/$/, '') : '';
+    var OTP = '482977';
+    var player = new Audio(); var playingBtn = null;
+    function play(src, btn) {
+      player.pause(); if (playingBtn) playingBtn.classList.remove('on');
+      player = new Audio(BASE + src); playingBtn = btn || null;
+      if (btn) btn.classList.add('on');
+      player.onended = function () { if (btn) btn.classList.remove('on'); };
+      return player.play().catch(function () {});
+    }
+    document.querySelectorAll('.vplay').forEach(function (b) {
+      b.addEventListener('click', function () { play('/audio/' + b.dataset.clip + '.mp3', b); });
+    });
+    document.getElementById('tkPlay').addEventListener('click', function () { play('/audio/arrest.raaz.mp3'); setTimeout(function(){}, 0); });
+
+    var KINDS = {
+      push:   ['Pushed back', 'good', 'arrest.raaz.p', 'Sahi. Ab woh aur dabaav daalega: suniye.'],
+      verify: ['Will verify first', 'good', 'arrest.raaz.p', 'Sabse sahi jawaab. Asli drill mein yeh tareef paata hai.'],
+      agree:  ['Agreed', 'mid', 'arrest.paisa', 'Raaz pe haan kehna ek chook hai. Caller agle red flag pe jaata hai: paisa.'],
+      otp:    ['Gave the OTP', 'bad', 'arrest.thanks', 'Code chala gaya. Asli drill mein yahin call kat jaati aur slip card pe dikhti.'],
+      hangup: ['Hung up', 'good', null, 'Kaat diya! Bilkul sahi. Darr, Raaz ya Paisa sunte hi yahi karna hai.'],
+      unclear:['Unclear', 'mid', 'nudge.inspector', 'Kuch saaf nahi suna. Asli drill mein yeh kabhi slip nahi ginta.']
+    };
+    var out = document.getElementById('tkOut');
+    function busy(on) { tk.querySelectorAll('.tk-phrases button, .tk-mic').forEach(function (b) { b.disabled = on; }); }
+    function show(r) {
+      var k = KINDS[r.kind] || KINDS.unclear;
+      out.hidden = false;
+      document.getElementById('tkHeard').textContent = r.transcript || '(kuch nahi)';
+      var kind = document.getElementById('tkKind'); kind.textContent = k[0]; kind.className = 'tk-kind ' + k[1];
+      document.getElementById('tkSay').textContent = k[3];
+      document.getElementById('tkMs').textContent = r.stt_ms ? 'Gnani Prisma took ' + (r.stt_ms / 1000).toFixed(2) + ' s' : '';
+      if (k[2]) setTimeout(function () { play('/audio/' + k[2] + '.mp3'); }, 500);
+    }
+    function send(blob) {
+      busy(true);
+      document.getElementById('tkKind').textContent = '';
+      var fd = new FormData(); fd.append('audio', blob, 'reply.wav'); fd.append('otp', OTP); fd.append('call', 'arrest'); fd.append('stage', 'raaz');
+      return fetch(BASE + '/api/turn', { method: 'POST', body: fd }).then(function (r) { return r.json(); })
+        .then(show).catch(function () { show({ kind: 'unclear', transcript: '' }); })
+        .then(function () { busy(false); });
+    }
+    document.querySelectorAll('#tkPhrases button').forEach(function (b) {
+      b.addEventListener('click', function () {
+        fetch(BASE + '/samples/' + b.dataset.s + '.wav').then(function (r) { return r.blob(); }).then(send);
+      });
+    });
+
+    /* hold to talk: records 16 kHz mono WAV in the page, as the drill does */
+    var mic = document.getElementById('tkMic'), micText = document.getElementById('tkMicText');
+    var ctx, stream, proc, chunks = [], rec = false, t0 = 0;
+    function wav(samples, rate) {
+      var buf = new ArrayBuffer(44 + samples.length * 2), v = new DataView(buf);
+      function w(o, s) { for (var i = 0; i < s.length; i++) v.setUint8(o + i, s.charCodeAt(i)); }
+      w(0, 'RIFF'); v.setUint32(4, 36 + samples.length * 2, true); w(8, 'WAVE'); w(12, 'fmt ');
+      v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, 1, true); v.setUint32(24, rate, true);
+      v.setUint32(28, rate * 2, true); v.setUint16(32, 2, true); v.setUint16(34, 16, true); w(36, 'data'); v.setUint32(40, samples.length * 2, true);
+      for (var i = 0, o = 44; i < samples.length; i++, o += 2) { var x = Math.max(-1, Math.min(1, samples[i])); v.setInt16(o, x < 0 ? x * 0x8000 : x * 0x7fff, true); }
+      return new Blob([buf], { type: 'audio/wav' });
+    }
+    function start(e) {
+      e.preventDefault(); if (rec || mic.disabled) return;
+      player.pause();
+      var AC = window.AudioContext || window.webkitAudioContext;
+      ctx = ctx || new AC();
+      var go = function () {
+        chunks = []; rec = true; t0 = Date.now(); mic.classList.add('rec'); micText.textContent = 'Bol rahe hain... chhodiye to send';
+      };
+      if (stream) { ctx.resume(); go(); return; }
+      navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true, channelCount: 1 } }).then(function (s) {
+        stream = s; var src = ctx.createMediaStreamSource(s); proc = ctx.createScriptProcessor(2048, 1, 1);
+        var mute = ctx.createGain(); mute.gain.value = 0; src.connect(proc); proc.connect(mute); mute.connect(ctx.destination);
+        proc.onaudioprocess = function (ev) { if (rec) chunks.push(new Float32Array(ev.inputBuffer.getChannelData(0))); };
+        ctx.resume(); go();
+      }).catch(function () { micText.textContent = 'Mic blocked. Use a recorded reply below.'; mic.disabled = true; });
+    }
+    function stop() {
+      if (!rec) return; rec = false; mic.classList.remove('rec'); micText.textContent = 'Hold and reply';
+      if (Date.now() - t0 < 500) { micText.textContent = 'Hold a little longer'; return; }
+      var n = chunks.reduce(function (a, c) { return a + c.length; }, 0), all = new Float32Array(n), o = 0;
+      chunks.forEach(function (c) { all.set(c, o); o += c.length; });
+      var ratio = ctx.sampleRate / 16000, m = Math.floor(all.length / ratio), ds = new Float32Array(m);
+      for (var i = 0; i < m; i++) { var a = Math.floor(i * ratio), b = Math.min(all.length, Math.floor((i + 1) * ratio)), sum = 0; for (var j = a; j < b; j++) sum += all[j]; ds[i] = sum / Math.max(1, b - a); }
+      send(wav(ds, 16000));
+    }
+    mic.addEventListener('pointerdown', start);
+    ['pointerup', 'pointerleave', 'pointercancel'].forEach(function (ev) { mic.addEventListener(ev, stop); });
+  })();
 
   /* waveform bars */
   var wave = document.getElementById('wave');
