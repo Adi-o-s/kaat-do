@@ -305,8 +305,17 @@ async def health():
     return {"ok": True, "stt": gnani.available(), "usage": gnani.USAGE}
 
 
+LANDING = ROOT / "landing" / "index.html"
+
+
 @app.get("/")
 async def index():
+    # One deployment: the landing page at /, the drill at /try.
+    return FileResponse(LANDING if LANDING.exists() else WEB / "index.html")
+
+
+@app.get("/try")
+async def try_drill():
     return FileResponse(WEB / "index.html")
 
 

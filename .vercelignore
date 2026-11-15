@@ -1,0 +1,10 @@
+.venv
+.env
+data
+recordings
+.taste-skill
+tests
+tools
+Dockerfile
+gate1_clone.mp3
+landing/.vercel

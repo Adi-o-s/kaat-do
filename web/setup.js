@@ -86,7 +86,7 @@
       if (!ok) { $("#makingInfo").textContent = "The voice service is busy. Please try again in a minute."; return; }
       $("#bar").style.width = `${((n + 1) / drill.clips.length) * 100}%`;
     }
-    const url = `${location.origin}/?d=${drill.id}`;
+    const url = `${location.origin}/try?d=${drill.id}`;
     $("#making").style.display = "none"; $("#done").style.display = "";
     $("#link").textContent = url;
     $("#tryBtn").href = url;

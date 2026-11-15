@@ -188,7 +188,7 @@
     $("#cardFast").textContent = fastest !== null ? `Sabse tez scam cut: ${fastest} second` : "";
 
     const vWord = V[0];
-    let resultUrl = location.origin + "/";
+    let resultUrl = location.origin + "/try";
     try {
       const r = await fetch("/api/result", {
         method: "POST", headers: { "Content-Type": "application/json" },
@@ -199,7 +199,7 @@
     } catch (e) {}
     const shareText = script.personal
       ? `${script.child_name || ""}, maine Kaat Do practice kiya: ${vWord}${fastest !== null ? `, sabse tez cut ${fastest} second` : ""}. ${resultUrl}`
-      : `Kaat Do scam practice: ${vWord}${fastest !== null ? `, ${fastest} second mein scam kaata` : ""}. Aapke parents kar payenge? ${location.origin}/`;
+      : `Kaat Do scam practice: ${vWord}${fastest !== null ? `, ${fastest} second mein scam kaata` : ""}. Aapke parents kar payenge? ${location.origin}/try`;
     $("#shareBtn").textContent = script.personal ? `${script.child_name || "Bachche"} ko result bhejiye` : "Result share kijiye";
     $("#shareBtn").onclick = async () => {
       if (navigator.share) { try { await navigator.share({ text: shareText }); return; } catch (e) {} }
