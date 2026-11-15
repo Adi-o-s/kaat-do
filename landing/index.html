@@ -7,7 +7,7 @@
 <meta name="description" content="Kaat Do is a fire drill for scam calls. It calls your parents with a practice scam, listens to how they respond, and coaches them in your voice.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Inter:wght@400;500;600;700&family=Mukta:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 /* Kaat Do landing. Same system as the app: one face (Mukta), a night call screen,
    warm paper for explanation. Colour is functional: green answers, red cuts,
@@ -448,6 +448,82 @@ footer .help a { color: #3fbf8a; }
 .evidence td { padding: 11px 12px 11px 0; border-top: 1px solid var(--night-line); }
 .evidence td.good { color: #3fbf8a; font-weight: 700; }
 @media (max-width: 600px) { .evidence table { min-width: 0; font-size: 15px; } .evidence th:first-child, .evidence td:first-child { display: none; } } .evidence td.bad { color: #ff6b5e; font-weight: 700; }
+
+/* ================================================================
+   Brand pass: one signal-red field, heavy grotesk display in capitals,
+   Inter for reading, crisp 1px cards on white. Green stays for "safe".
+   ================================================================ */
+:root {
+  --brand: #e5352b; --brand-deep: #b8261d; --brand-ink: #ffffff;
+  --paper: #fafaf8; --paper-2: #f1f0ec; --card: #ffffff; --ink: #0d0e0d; --muted: #555a54; --line: #e3e2dd;
+  --night: #0b0c0b; --night-2: #161816; --night-3: #212421;
+  --display: "Archivo", "Mukta", system-ui, sans-serif;
+  --face: "Inter", "Mukta", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --paper: #0f100f; --paper-2: #151715; --card: #181a18; --ink: #f1f2ee; --muted: #a5aaa3; --line: #2a2d2a; } }
+body { font-family: var(--face); letter-spacing: -.005em; }
+h1, h2.title, .brand, .verdict, .model h3, .evidence h3, .talk-sub, .tk-head b { font-family: var(--display); }
+h2.title { text-transform: uppercase; font-weight: 900; letter-spacing: -.02em; line-height: .96; font-size: clamp(34px, 4vw, 56px); max-width: 18ch; }
+.eyebrow { font-family: var(--face); font-size: 13px; letter-spacing: .14em; font-weight: 700; color: var(--brand); }
+.night .eyebrow { color: #ff8a80; }
+.lede { font-size: 20px; line-height: 1.55; }
+
+/* nav: white bar, black text, red mark */
+.nav { background: rgba(250,250,248,.96); color: var(--ink); border-bottom: 1px solid var(--line); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .nav { background: rgba(15,16,15,.96); } }
+.nav-links { color: var(--muted); font-weight: 500; font-size: 15px; }
+.nav-links a:hover { color: var(--ink); }
+.brand { font-weight: 900; text-transform: uppercase; letter-spacing: -.01em; font-size: 21px; }
+.brand small { color: var(--muted); font-family: var(--face); text-transform: none; }
+.mark { background: var(--brand); border-radius: 10px; }
+.btn { font-family: var(--face); font-weight: 600; border-radius: 12px; padding: 15px 24px; }
+.btn-green { background: var(--ink); color: var(--paper); }
+.btn-green:hover { background: #2a2c2a; }
+.nav .btn-green { background: var(--brand); color: #fff; }
+.nav .btn-green:hover { background: var(--brand-deep); }
+.night .btn-green { background: #fff; color: #0b0c0b; }
+.night .btn-green:hover { background: #e9e9e6; }
+
+/* hero: the signal-red field */
+.hero.field { background: var(--brand); color: var(--brand-ink); padding: 88px 0 104px; }
+.hero.field h1 { font-family: var(--display); text-transform: uppercase; font-weight: 900; letter-spacing: -.035em; line-height: .9; font-size: clamp(52px, 7.4vw, 112px); }
+.hero.field h1 .cut { color: #0b0c0b; }
+.hero.field .hero-lede { color: rgba(255,255,255,.92); }
+.hero.field .hero-lede b { color: #fff; }
+.hero.field .pill { background: #0b0c0b; color: var(--amber); }
+.hero.field .btn-green { background: #0b0c0b; color: #fff; }
+.hero.field .btn-green:hover { background: #222; }
+.hero.field .btn-ghost { color: #fff; box-shadow: inset 0 0 0 2px rgba(255,255,255,.55); }
+.hero.field .btn-ghost:hover { box-shadow: inset 0 0 0 2px #fff; }
+.hero.field .hero-meta { color: rgba(255,255,255,.88); }
+.hero.field .hero-meta i { background: #fff; }
+.hero.field .phone-stage::before { display: none; }
+.hero.field .phone { box-shadow: 0 30px 80px rgba(60,0,0,.35); }
+
+/* trust strip */
+.trust { background: var(--night); color: #f2f3ef; padding: 26px 0; }
+.trust .wrap { display: flex; align-items: center; gap: 32px; }
+.trust-lead { margin: 0; flex: none; font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #ff8a80; }
+.trust ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 24px; flex: 1; }
+.trust b { display: block; font-family: var(--display); font-weight: 800; font-size: 19px; letter-spacing: -.01em; }
+.trust span { display: block; font-size: 13.5px; color: #a3a8a1; line-height: 1.35; margin-top: 2px; }
+@media (max-width: 1000px) { .trust .wrap { flex-direction: column; align-items: flex-start; gap: 16px; } .trust ul { grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; } }
+
+/* crisp cards on light sections */
+.problem-points li, .step, .call, .safe, .verdict-card, .vcard { box-shadow: none !important; border: 1px solid var(--line); background: var(--card); border-radius: 18px; }
+.night .tk, .night .voices li { border: 1px solid #262926; }
+.tk-mic { background: var(--brand); border-radius: 14px; }
+.tk-mic:active, .tk-mic.rec { background: var(--brand-deep); }
+.vplay, .tk-play { background: #fff; color: #0b0c0b; }
+.vplay.on { background: var(--amber); }
+.model { border-top-color: var(--brand); }
+.model .role { color: #ff8a80; }
+.model li::before { background: #ff8a80; }
+section#start.cta { background: var(--brand); }
+section#start.cta .btn-ghost { color: #fff; box-shadow: inset 0 0 0 2px rgba(255,255,255,.55); }
+section#start.cta .btn-green { background: #0b0c0b; color: #fff; }
+section#start.cta h2 { font-family: var(--display); text-transform: uppercase; font-weight: 900; letter-spacing: -.03em; }
+section#start.cta p { color: rgba(255,255,255,.9); }
 </style>
 </head>
 <body class="js-off">
@@ -491,7 +567,7 @@ footer .help a { color: #3fbf8a; }
 <main id="top">
 
 <!-- ============================================ HERO -->
-<section class="hero night">
+<section class="hero night field">
   <div class="wrap">
     <div class="reveal-up">
       <span class="pill">Practice · <span lang="hi">यह अभ्यास है</span></span>
@@ -545,12 +621,26 @@ footer .help a { color: #3fbf8a; }
   </div>
 </section>
 
+<!-- ============================================ TRUST STRIP -->
+<div class="trust" aria-label="What Kaat Do is built on">
+  <div class="wrap">
+    <p class="trust-lead">Built on Gnani AI</p>
+    <ul>
+      <li><b>Prisma v3.0</b><span>Speech to text, live on every reply</span></li>
+      <li><b>Timbre</b><span>Every caller voice, at phone quality</span></li>
+      <li><b>Voice cloning</b><span>The debrief, in your own voice</span></li>
+      <li><b>0.2 s</b><span>Median time for Prisma to hear a reply</span></li>
+      <li><b>No login</b><span>A link, a ring, and a red button</span></li>
+    </ul>
+  </div>
+</div>
+
 <!-- ============================================ PROBLEM -->
 <section class="problem">
   <div class="wrap">
     <div class="reveal-up">
       <p class="eyebrow">Why a drill</p>
-      <h2 class="title">Scammers rehearse their script. Our parents never get to rehearse theirs.</h2>
+      <h2 class="title">Scammers rehearse. Our parents never do.</h2>
       <p class="lede">We send them warnings on WhatsApp. Then a calm, official-sounding voice calls, says the bank account is about to close, and the warning is forgotten. Knowing is not the same as reacting. A drill builds the reaction.</p>
     </div>
     <ul class="problem-points reveal-up">
