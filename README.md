@@ -4,6 +4,12 @@
 
 **Live demo:** https://kaat-do.vercel.app · **Straight into a drill:** https://kaat-do.vercel.app/try
 
+### Demo video
+
+[![Kaat Do demo video: tap to play](docs/kaat-do-demo-poster.jpg)](docs/kaat-do-demo.mp4)
+
+**[▶ Watch the demo (MP4, 1:1)](docs/kaat-do-demo.mp4)**. GitHub opens the file in its own player.
+
 Built for Gnani AI's Great Indian AI Internship Challenge on three Gnani models: **Prisma** (speech to text), **Timbre** (text to speech) and **voice cloning**. Synthetic data only.
 
 ---
